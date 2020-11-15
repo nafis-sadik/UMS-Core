@@ -1,9 +1,0 @@
-C:\Users\User\source\repos\UMS-Core\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.deps.json
-C:\Users\User\source\repos\UMS-Core\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.dll
-C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.AssemblyInfoInputs.cache
-C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.AssemblyInfo.cs
-C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.csprojAssemblyReference.cache
-C:\Users\User\source\repos\UMS-Core\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.pdb
-C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.dll
-C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.pdb
