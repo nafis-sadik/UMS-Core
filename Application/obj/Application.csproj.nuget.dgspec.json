@@ -31,6 +31,9 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+              "C:\\Users\\User\\source\\repos\\UMS-Core\\Repositories\\Repositories.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\Repositories\\Repositories.csproj"
+              },
               "C:\\Users\\User\\source\\repos\\UMS-Core\\Services\\Services.csproj": {
                 "projectPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\Services\\Services.csproj"
               }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Unity;
+using Unity.Lifetime;
 
 namespace Application
 {
@@ -20,7 +21,7 @@ namespace Application
 
         public static void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<ILogInService, LogInService>();
+            container.RegisterType<ILogInService, LogInService>(new PerThreadLifetimeManager());
         }
     }
 }
