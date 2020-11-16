@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Models.DB
 {
     public class UMS_USERINFO
     {
+        [Key]
         public string USERID { get; set; }
         public string NAME { get; set; }
         public long CATEGORYID { get; set; }

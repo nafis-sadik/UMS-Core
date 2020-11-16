@@ -4,21 +4,33 @@ using System.Text;
 using Services.Abstraction;
 using Repositories;
 using System.Linq;
+using Models.DB;
 
 namespace Services
 {
     public class LogInService:ILogInService
     {
-        private UserInfoRepo userInfoRepo;
-        private PassRepo passRepo;
-        public LogInService(UserInfoRepo _userInfoRepo, PassRepo _passRepo)
+        private IUserInfoRepo userInfoRepo;
+        private IPassRepo passRepo;
+        public LogInService()
         {
-            userInfoRepo = _userInfoRepo;
-            passRepo = _passRepo;
+            userInfoRepo = new UserInfoRepo();
+            passRepo = new PassRepo();
         }
         public bool AuthenticateUser(string UserId, string Password)
         {
-            var User = userInfoRepo.AsQueryable().Where(x => x.USERID == UserId).FirstOrDefault() ?? new Models.DB.UMS_USERINFO { USERID = "" };
+            // Asqueryable data found
+            var x = userInfoRepo.AsQueryable().Where(x => x.USERID == UserId);
+            // failed tolist
+            var q = x.ToList();
+            foreach(var z in x)
+            {
+                var qz = z.USERID;
+            }
+
+
+
+            var User = userInfoRepo.AsQueryable().Where(x => x.USERID == UserId).FirstOrDefault();
             var Pass = passRepo.AsQueryable().Where(x => x.USERID == UserId).FirstOrDefault();
             if(Pass.USERPASS == Password)
             {

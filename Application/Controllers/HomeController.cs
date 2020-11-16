@@ -14,9 +14,9 @@ namespace Application.Controllers
     public class HomeController : ControllerBase
     {
         private ILogInService logInService;
-        public HomeController(ILogInService _logInService)
+        public HomeController()
         {
-            logInService = _logInService;
+            logInService = new LogInService();;
         }
 
         [HttpPost]

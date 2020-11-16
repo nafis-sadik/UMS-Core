@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Models.DB
 {
     public class UMS_APPCONFIG
     {
+        [Key]
         string PKVALUE { get; set; }
         int MAXAUTHLEVEL { get; set; }
         int APPAUTHLEVEL { get; set; }
