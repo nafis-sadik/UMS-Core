@@ -1,3 +1,8 @@
+C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.csprojAssemblyReference.cache
+C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.AssemblyInfo.cs
+C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\UMS-Core.exe
@@ -6,11 +11,6 @@ C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\UMS-Core.ru
 C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\UMS-Core.runtimeconfig.dev.json
 C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\UMS-Core.dll
 C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\UMS-Core.pdb
-C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.csprojAssemblyReference.cache
-C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.AssemblyInfoInputs.cache
-C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.AssemblyInfo.cs
-C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\staticwebassets\UMS-Core.StaticWebAssets.Manifest.cache
 C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\staticwebassets\UMS-Core.StaticWebAssets.xml
 C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\scopedcss\bundle\UMS-Core.styles.css
@@ -18,3 +18,10 @@ C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.Ra
 C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.dll
 C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.pdb
 C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.genruntimeconfig.cache
+C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\Unity.Abstractions.dll
+C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\Unity.Container.dll
+C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\Models.dll
+C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\Services.dll
+C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\Services.pdb
+C:\Users\User\source\repos\UMS-Core\UMS-Core\bin\Debug\netcoreapp3.1\Models.pdb
+C:\Users\User\source\repos\UMS-Core\UMS-Core\obj\Debug\netcoreapp3.1\UMS-Core.csproj.CopyComplete

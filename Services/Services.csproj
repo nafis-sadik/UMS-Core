@@ -5,7 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstraction\" />
+    <Compile Remove="Implementation\LogInService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LogInService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Repositories\Repositories.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Implementation\" />
   </ItemGroup>
 
