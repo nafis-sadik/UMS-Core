@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using Services;
 using Services.Abstraction;
 using System;
@@ -9,23 +10,20 @@ using System.Threading.Tasks;
 
 namespace Application.Controllers
 {
-    [Route("api/Home")]
+    [Route("api/Users")]
     [ApiController]
-    public class HomeController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private ILogInService logInService;
         private IUserManagerService userManagerService;
-        public HomeController()
+        public UsersController()
         {
-            logInService = new LogInService();
             userManagerService = new UserManagerService();
         }
-
         [HttpPost]
-        [Route("TestingCon")]
-        public ActionResult TestingCon(string UserId, string Pass)
+        [Route("Add")]
+        public ActionResult AddNewUser(UserInfo userInfo)
         {
-            if (logInService.AuthenticateUser(UserId, Pass))
+            if (userManagerService.AddNewUser(userInfo))
                 return Ok();
             else
                 return Conflict();

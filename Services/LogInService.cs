@@ -20,8 +20,13 @@ namespace Services
         public bool AuthenticateUser(string UserId, string Password)
         {
             // Asqueryable data found
+            userInfoRepo.Add(new UMS_USERINFO { USERID = "Nafis Sadik", NAME = "Nafis Sadik" });
+            userInfoRepo.Save();
+            return true;
             var x = userInfoRepo.AsQueryable().Where(x => x.USERID == UserId);
             // failed tolist
+            var c = x.Count();
+            var d = x.FirstOrDefault();
             var q = x.ToList();
             foreach(var z in x)
             {

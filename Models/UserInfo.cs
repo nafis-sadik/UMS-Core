@@ -11,7 +11,7 @@ namespace Models
         public long CategoryId { get; set; }
         public string Cellno { get; set; }
         public string Email { get; set; }
-        public string Dob { get; set; }
+        public DateTime Dob { get; set; }
         public string Catidval { get; set; }
         public string Mfa { get; set; }
         public string Macaddress { get; set; }

@@ -13,7 +13,7 @@ namespace Models.DB
         public long CATEGORYID { get; set; }
         public string CELLNO { get; set; }
         public string EMAIL { get; set; }
-        public string DOB { get; set; }
+        public DateTime DOB { get; set; }
         public string CATIDVAL { get; set; }
         public string MFA { get; set; }
         public string MACADDRESS { get; set; }
