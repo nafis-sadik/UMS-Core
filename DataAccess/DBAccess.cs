@@ -18,7 +18,7 @@ namespace DataAccess
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json")).Build();
 
-            optionsBuilder.UseOracle(configuration.GetConnectionString("OracleConnecionString"), options => options.UseOracleSQLCompatibility("11"));
+            optionsBuilder.UseOracle(configuration.GetConnectionString("OracleConnecionString"), options => options.UseOracleSQLCompatibility("12"));
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

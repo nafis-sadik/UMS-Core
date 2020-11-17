@@ -8,7 +8,7 @@ namespace Models
     {
         public string UserId { get; set; }
         public string Name { get; set; }
-        public long CategoryId { get; set; }
+        public decimal CategoryId { get; set; }
         public string Cellno { get; set; }
         public string Email { get; set; }
         public DateTime Dob { get; set; }

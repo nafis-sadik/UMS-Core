@@ -9,8 +9,8 @@ namespace Models.DB
     {
         [Key]
         public string USERID { get; set; }
-        public string NAME { get; set; }
-        public long CATEGORYID { get; set; }
+        public string NAME { get; set; }    
+        public decimal CATEGORYID { get; set; }
         public string CELLNO { get; set; }
         public string EMAIL { get; set; }
         public DateTime DOB { get; set; }
