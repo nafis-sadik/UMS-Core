@@ -18,8 +18,10 @@ namespace Services
         public bool AddNewUser(UserInfo userInfo)
         {
             try {
-                userInfoRepo.Add(CastToEntity(userInfo));
+                var entity = CastToEntity(userInfo);
+                userInfoRepo.Add(entity);
                 userInfoRepo.Save();
+                userInfoRepo.Commit();
                 return true;
             } catch (Exception ex) {
                 return false;
@@ -35,7 +37,7 @@ namespace Services
                 CATEGORYID = userInfo.CategoryId,
                 CATIDVAL = userInfo.Catidval,
                 CELLNO = userInfo.Cellno,
-                DOB = userInfo.Dob,
+                DOB = string.IsNullOrEmpty(userInfo.Dob) ? "" : userInfo.Dob,
                 EMAIL = userInfo.Email,
                 IPADDRESS = userInfo.Ipaddress,
                 MACADDRESS = userInfo.Macaddress,

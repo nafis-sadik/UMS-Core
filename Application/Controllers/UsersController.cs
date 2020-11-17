@@ -19,5 +19,14 @@ namespace Application.Controllers
         {
             userManagerService = new UserManagerService();
         }
+        [HttpPost]
+        [Route("Add")]
+        public IActionResult AddNewUser(UserInfo userInfo)
+        {
+            if (userManagerService.AddNewUser(userInfo))
+                return Ok();
+            else
+                return Conflict();
+        }
     }
 }
