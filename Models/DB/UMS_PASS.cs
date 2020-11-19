@@ -7,6 +7,7 @@ namespace Models.DB
 {
     public class UMS_PASS
     {
+        private UMS_PASS() { } 
         [Key]
         public long PASSID { get; set; }
         public string USERID { get; set; }

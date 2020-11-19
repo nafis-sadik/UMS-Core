@@ -10,3 +10,5 @@ C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp3.1\DataAcces
 C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CopyComplete
 C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.dll
 C:\Users\User\source\repos\UMS-Core\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\User\source\repos\UMS-Core\DataAccess\bin\Debug\netcoreapp3.1\DBAccessPublish.dll
+C:\Users\User\source\repos\UMS-Core\DataAccess\bin\Debug\netcoreapp3.1\DBAccessPublish.pdb

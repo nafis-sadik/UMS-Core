@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Dotnet_Core_Scaffolding_Oracle.Models;
+using Models;
 using Models.DB;
 using Repositories;
 using Services.Abstraction;
@@ -33,49 +34,52 @@ namespace Services
 
         public UserInfo GetUser(string UserId)
         {
-            var x = userInfoRepo.AsQueryable().FirstOrDefault(x => x.USERID == UserId);
-            return CastToModel(x);
+            UmsUserinfo entity = userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
+            if (entity != null)
+                return CastToModel(entity);
+            else
+                return null;
         }
 
-        private static UMS_USERINFO CastToEntity(UserInfo userInfo)
+        private static UmsUserinfo CastToEntity(UserInfo userInfo)
         {
-            return new UMS_USERINFO
+            return new UmsUserinfo
             {
-                NAME = userInfo.Name,
-                USERID = userInfo.UserId,
-                CATEGORYID = userInfo.CategoryId,
-                CATIDVAL = userInfo.Catidval,
-                CELLNO = userInfo.Cellno,
-                DOB = string.IsNullOrEmpty(userInfo.Dob) ? "" : userInfo.Dob,
-                EMAIL = userInfo.Email,
-                IPADDRESS = userInfo.Ipaddress,
-                MACADDRESS = userInfo.Macaddress,
-                MFA = userInfo.Mfa,
-                PICTURE = userInfo.Picture,
-                RECSTATUS = userInfo.Recstatus,
-                SIGNATURE = userInfo.Signature,
-                THUMB = userInfo.Thumb
+                Name = userInfo.Name,
+                Userid = userInfo.UserId,
+                Categoryid = userInfo.CategoryId,
+                Catidval = userInfo.Catidval,
+                Cellno = userInfo.Cellno,
+                Dob = string.IsNullOrEmpty(userInfo.Dob) ? "" : userInfo.Dob,
+                Email = userInfo.Email,
+                Ipaddress = userInfo.Ipaddress,
+                Macaddress = userInfo.Macaddress,
+                Mfa = userInfo.Mfa,
+                Picture = userInfo.Picture,
+                Recstatus = userInfo.Recstatus,
+                Signature = userInfo.Signature,
+                Thumb = userInfo.Thumb
             };
         }
 
-        private static UserInfo CastToModel(UMS_USERINFO userInfo)
+        private static UserInfo CastToModel(UmsUserinfo userInfo)
         {
             return new UserInfo
             {
-                Name = userInfo.NAME,
-                UserId = userInfo.USERID,
-                CategoryId = userInfo.CATEGORYID,
-                Catidval = userInfo.CATIDVAL,
-                Cellno = userInfo.CELLNO,
-                Dob = userInfo.DOB,
-                Email = userInfo.EMAIL,
-                Ipaddress = userInfo.IPADDRESS,
-                Macaddress = userInfo.MACADDRESS,
-                Mfa = userInfo.MFA,
-                Picture = userInfo.PICTURE,
-                Recstatus = userInfo.RECSTATUS,
-                Signature = userInfo.SIGNATURE,
-                Thumb = userInfo.THUMB
+                Name = userInfo.Name,
+                UserId = userInfo.Userid,
+                CategoryId = userInfo.Categoryid,
+                Catidval = userInfo.Catidval,
+                Cellno = userInfo.Cellno,
+                Dob = userInfo.Dob,
+                Email = userInfo.Email,
+                Ipaddress = userInfo.Ipaddress,
+                Macaddress = userInfo.Macaddress,
+                Mfa = userInfo.Mfa,
+                Picture = userInfo.Picture,
+                Recstatus = userInfo.Recstatus,
+                Signature = userInfo.Signature,
+                Thumb = userInfo.Thumb
             };
         }
     }

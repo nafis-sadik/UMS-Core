@@ -7,6 +7,7 @@ namespace Models.DB
 {
     public class UMS_AUTHQUE
     {
+        private UMS_AUTHQUE() { }
         [Key]
         public long AUTHQUEID { get; set; }
         public string ENTRYDATE { get; set; }

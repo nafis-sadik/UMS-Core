@@ -5,17 +5,18 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using DataAccess;
+using Dotnet_Core_Scaffolding_Oracle.Models;
 
 namespace Repositories
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        private DBAccess db;
+        private ModelContext db;
         private DbSet<T> _dbSet;
         private readonly IDbContextTransaction transaction;
         internal RepositoryBase()
         {
-            db = new DBAccess();
+            db = new ModelContext();
             _dbSet = db.Set<T>();
             transaction = db.Database.BeginTransaction();
         }

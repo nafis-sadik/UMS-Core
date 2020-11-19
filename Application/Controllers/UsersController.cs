@@ -26,9 +26,9 @@ namespace Application.Controllers
         public IActionResult AddNewUser(UserInfo userInfo)
         {
             if (userManagerService.AddNewUser(userInfo))
-                return Ok();
+                return StatusCode((int)HttpStatusCode.OK);
             else
-                return Conflict();
+                return StatusCode((int)HttpStatusCode.InternalServerError);
         }
 
         [HttpGet]
@@ -39,7 +39,7 @@ namespace Application.Controllers
             if (userInfo == null)
                 return StatusCode((int)HttpStatusCode.NotFound);
             else
-                return StatusCode((int)HttpStatusCode.OK);
+                return Ok(userInfo);
         }
     }
 }

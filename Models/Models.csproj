@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="Dotnet-Core-Scaffolding-Oracle">
+      <HintPath>..\Dotnet-Core-Scaffolding-Oracle.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

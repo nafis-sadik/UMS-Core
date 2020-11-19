@@ -19,4 +19,13 @@
     <ProjectReference Include="..\Repositories\Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="DBAccessPublish">
+      <HintPath>..\DataAccessPublish\DBAccessPublish.dll</HintPath>
+    </Reference>
+    <Reference Include="Dotnet-Core-Scaffolding-Oracle">
+      <HintPath>..\Dotnet-Core-Scaffolding-Oracle.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

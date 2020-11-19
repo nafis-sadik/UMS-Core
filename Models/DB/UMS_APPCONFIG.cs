@@ -7,6 +7,7 @@ namespace Models.DB
 {
     public class UMS_APPCONFIG
     {
+        private UMS_APPCONFIG() { }
         [Key]
         string PKVALUE { get; set; }
         int MAXAUTHLEVEL { get; set; }

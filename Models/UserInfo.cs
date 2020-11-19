@@ -17,8 +17,8 @@ namespace Models
         public string Macaddress { get; set; }
         public string Ipaddress { get; set; }
         public string Recstatus { get; set; }
-        public string Picture { get; set; }
-        public string Signature { get; set; }
-        public string Thumb { get; set; }
+        public byte[] Picture { get; set; }
+        public byte[] Signature { get; set; }
+        public byte[] Thumb { get; set; }
     }
 }

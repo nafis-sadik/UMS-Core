@@ -22,14 +22,14 @@ namespace Services
             try
             {
                 // Asqueryable data found
-                var x = userInfoRepo.AsQueryable().FirstOrDefault(x => x.USERID == UserId);
+                var x = userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
                 // failed tolist
 
 
 
-                var User = userInfoRepo.AsQueryable().Where(x => x.USERID == UserId).FirstOrDefault();
-                var Pass = passRepo.AsQueryable().Where(x => x.USERID == UserId).FirstOrDefault();
-                if (Pass.USERPASS == Password)
+                var User = userInfoRepo.AsQueryable().Where(x => x.Userid == UserId).FirstOrDefault();
+                var Pass = passRepo.AsQueryable().Where(x => x.Userid == UserId).FirstOrDefault();
+                if (Pass.Userpass == Password)
                 {
                     return true;
                 }

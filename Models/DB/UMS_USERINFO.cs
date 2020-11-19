@@ -7,6 +7,7 @@ namespace Models.DB
 {
     public class UMS_USERINFO
     {
+        private UMS_USERINFO () { }
         [Key]
         public string USERID { get; set; }
         public string NAME { get; set; }
