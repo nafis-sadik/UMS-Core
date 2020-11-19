@@ -8,5 +8,6 @@ namespace Services.Abstraction
     public interface IUserManagerService
     {
         bool AddNewUser(UserInfo userInfo);
+        UserInfo GetUser(string UserId);
     }
 }

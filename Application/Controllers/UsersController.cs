@@ -6,6 +6,7 @@ using Services.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Application.Controllers
@@ -19,6 +20,7 @@ namespace Application.Controllers
         {
             userManagerService = new UserManagerService();
         }
+        
         [HttpPost]
         [Route("Add")]
         public IActionResult AddNewUser(UserInfo userInfo)
@@ -27,6 +29,17 @@ namespace Application.Controllers
                 return Ok();
             else
                 return Conflict();
+        }
+
+        [HttpGet]
+        [Route("Get/{UserId}")]
+        public IActionResult GetUser(string UserId)
+        {
+            UserInfo userInfo = userManagerService.GetUser(UserId);
+            if (userInfo == null)
+                return StatusCode((int)HttpStatusCode.NotFound);
+            else
+                return StatusCode((int)HttpStatusCode.OK);
         }
     }
 }
