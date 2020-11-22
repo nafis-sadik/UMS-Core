@@ -15,17 +15,17 @@ namespace Application.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IUserManagerService userManagerService;
-        public UsersController()
+        private IUserManagerService _userManagerService;
+        public UsersController(IUserManagerService userManagerService)
         {
-            userManagerService = new UserManagerService();
+            _userManagerService = userManagerService;
         }
         
         [HttpPost]
         [Route("Add")]
         public IActionResult AddNewUser(UserInfo userInfo)
         {
-            if (userManagerService.AddNewUser(userInfo))
+            if (_userManagerService.AddNewUser(userInfo))
                 return StatusCode((int)HttpStatusCode.OK);
             else
                 return StatusCode((int)HttpStatusCode.InternalServerError);
@@ -35,7 +35,7 @@ namespace Application.Controllers
         [Route("Get/{UserId}")]
         public IActionResult GetUser(string UserId)
         {
-            UserInfo userInfo = userManagerService.GetUser(UserId);
+            UserInfo userInfo = _userManagerService.GetUser(UserId);
             if (userInfo == null)
                 return StatusCode((int)HttpStatusCode.NotFound);
             else
@@ -46,7 +46,7 @@ namespace Application.Controllers
         [Route("Update")]
         public IActionResult UpdateUser(UserInfo userInfo)
         {
-            if (userManagerService.UpdateUser(userInfo))
+            if (_userManagerService.UpdateUser(userInfo))
                 return Ok();
             else
                 return StatusCode((int)HttpStatusCode.NotFound);

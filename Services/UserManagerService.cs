@@ -12,29 +12,30 @@ namespace Services
 {
     public class UserManagerService : IUserManagerService
     {
-        private IUserInfoRepo userInfoRepo;
+        private IUserInfoRepo _userInfoRepo;
 
-        public UserManagerService()
+        public UserManagerService(IUserInfoRepo userInfoRepo)
         {
-            userInfoRepo = new UserInfoRepo();
+            _userInfoRepo = userInfoRepo;
         }
 
         public bool AddNewUser(UserInfo userInfo)
         {
             try {
                 var entity = CastToEntity(userInfo);
-                userInfoRepo.Add(entity);
-                userInfoRepo.Save();
-                userInfoRepo.Commit();
+                _userInfoRepo.Add(entity);
+                _userInfoRepo.Save();
+                _userInfoRepo.Commit();
                 return true;
             } catch (Exception ex) {
+                _userInfoRepo.Rollback();
                 return false;
             }
         }
 
         public UserInfo GetUser(string UserId)
         {
-            UmsUserinfo entity = userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
+            UmsUserinfo entity = _userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
             if (entity != null)
                 return CastToModel(entity);
             else
@@ -45,7 +46,7 @@ namespace Services
         {
             try
             {
-                UmsUserinfo entity = userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == userInfo.UserId);
+                UmsUserinfo entity = _userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == userInfo.UserId);
                 entity.Name = userInfo.Name;
                 entity.Userid = userInfo.UserId;
                 entity.Categoryid = userInfo.CategoryId;
@@ -60,13 +61,14 @@ namespace Services
                 entity.Recstatus = userInfo.Recstatus;
                 entity.Signature = userInfo.Signature;
                 entity.Thumb = userInfo.Thumb;
-                userInfoRepo.Update(entity);
-                userInfoRepo.Commit();
-                userInfoRepo.Save();
+                _userInfoRepo.Update(entity);
+                _userInfoRepo.Commit();
+                _userInfoRepo.Save();
                 return true;
             }
             catch (Exception ex)
             {
+                _userInfoRepo.Rollback();
                 return false;
             }
         }

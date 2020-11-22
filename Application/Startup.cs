@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Repositories;
+using Services;
+using Services.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +29,8 @@ namespace Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Add(new ServiceDescriptor(typeof(IUserInfoRepo), new UserInfoRepo()));
+            services.Add(new ServiceDescriptor(typeof(IUserManagerService), new UserManagerService(new UserInfoRepo())));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

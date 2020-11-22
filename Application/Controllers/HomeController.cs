@@ -13,19 +13,19 @@ namespace Application.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        private ILogInService logInService;
-        private IUserManagerService userManagerService;
-        public HomeController()
+        private ILogInService _logInService;
+        private IUserManagerService _userManagerService;
+        public HomeController(ILogInService logInService, IUserManagerService userManagerService)
         {
-            logInService = new LogInService();
-            userManagerService = new UserManagerService();
+            _logInService = logInService;
+            _userManagerService = userManagerService;
         }
 
         [HttpPost]
         [Route("TestingCon")]
         public ActionResult TestingCon(string UserId, string Pass)
         {
-            if (logInService.AuthenticateUser(UserId, Pass))
+            if (_logInService.AuthenticateUser(UserId, Pass))
                 return Ok();
             else
                 return Conflict();
