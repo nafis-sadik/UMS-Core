@@ -9,6 +9,19 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
+/* API Documentation
+ * Action : AddNewUser
+ * Response : Accepted - LogIn Successful
+ *            InternalServerError - Un handeled exception found, start debuging
+ *            Conflict - User Already exists
+ * Action : GetUser
+ * Response : NotFound - User was not found
+ *            Ok - User found successfully, object also returned
+ * Action : UpdateUser
+ * Response : Ok - Successful
+ *            InternalServerError - Un handeled exception found, start debuging
+ */
+
 namespace Application.Controllers
 {
     [Route("api/Users")]
@@ -25,10 +38,13 @@ namespace Application.Controllers
         [Route("Add")]
         public IActionResult AddNewUser(UserInfo userInfo)
         {
-            if (_userManagerService.AddNewUser(userInfo))
-                return StatusCode((int)HttpStatusCode.OK);
-            else
+            bool response = _userManagerService.AddNewUser(userInfo);
+            if (response)
+                return StatusCode((int)HttpStatusCode.Accepted);
+            else if (!response)
                 return StatusCode((int)HttpStatusCode.InternalServerError);
+            else
+                return StatusCode((int)HttpStatusCode.Conflict);
         }
 
         [HttpGet]
@@ -49,7 +65,7 @@ namespace Application.Controllers
             if (_userManagerService.UpdateUser(userInfo))
                 return Ok();
             else
-                return StatusCode((int)HttpStatusCode.NotFound);
+                return StatusCode((int)HttpStatusCode.InternalServerError);
         }
     }
 }

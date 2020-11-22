@@ -19,12 +19,16 @@ namespace Services
             _userInfoRepo = userInfoRepo;
         }
 
-        public bool AddNewUser(UserInfo userInfo)
+        public bool? AddNewUser(UserInfo userInfo)
         {
             try {
-                var entity = CastToEntity(userInfo);
+                UmsUserinfo entity = _userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == userInfo.UserId);
+                if (entity == null)
+                    return null;
+                entity = CastToEntity(userInfo);
                 _userInfoRepo.Add(entity);
                 _userInfoRepo.Save();
+                // throw new ArgumentException("Test Exception", "Successful Invocation");
                 _userInfoRepo.Commit();
                 return true;
             } catch (Exception ex) {
