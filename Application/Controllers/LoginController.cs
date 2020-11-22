@@ -19,7 +19,6 @@ namespace Application.Controllers
         {
             _logInService = logInService;
         }
-
         [HttpPost]
         [Route("Login/{UserId}/{Pass}")]
         public ActionResult Login(string UserId, string Pass)

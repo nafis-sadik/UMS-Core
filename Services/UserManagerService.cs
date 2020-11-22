@@ -41,7 +41,6 @@ namespace Services
             else
                 return null;
         }
-
         public bool UpdateUser(UserInfo userInfo)
         {
             try
@@ -72,7 +71,6 @@ namespace Services
                 return false;
             }
         }
-
         private static UmsUserinfo CastToEntity(UserInfo userInfo)
         {
             return new UmsUserinfo
