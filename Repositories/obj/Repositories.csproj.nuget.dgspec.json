@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\UMS-Core\\Repositories\\Repositories.csproj": {}
+    "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Repositories\\Repositories.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\UMS-Core\\DataAccess\\DataAccess.csproj": {
+    "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\UMS-Core\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\DataAccess\\obj\\",
+        "projectPath": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,10 +29,9 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\UMS-Core\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\Models\\Models.csproj"
+              "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Models\\Models.csproj": {
+                "projectPath": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Models\\Models.csproj"
               }
             }
           }
@@ -45,7 +44,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -79,24 +77,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\UMS-Core\\Models\\Models.csproj": {
+    "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\UMS-Core\\Models\\Models.csproj",
+        "projectUniqueName": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\Models\\obj\\",
+        "projectPath": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -108,7 +106,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -120,7 +117,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -136,24 +132,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\UMS-Core\\Repositories\\Repositories.csproj": {
+    "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\UMS-Core\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\Repositories\\Repositories.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\Repositories\\obj\\",
+        "projectPath": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Repositories\\Repositories.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -165,13 +161,12 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\UMS-Core\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\DataAccess\\DataAccess.csproj"
+              "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\User\\source\\repos\\UMS-Core\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\UMS-Core\\Models\\Models.csproj"
+              "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Models\\Models.csproj": {
+                "projectPath": "F:\\IUBAT\\Internship\\UMS\\UMS-Core\\Models\\Models.csproj"
               }
             }
           }
@@ -184,7 +179,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
@@ -206,7 +200,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

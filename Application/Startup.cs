@@ -31,6 +31,7 @@ namespace Application
             services.AddControllers();
             services.Add(new ServiceDescriptor(typeof(IUserInfoRepo), new UserInfoRepo()));
             services.Add(new ServiceDescriptor(typeof(IUserManagerService), new UserManagerService(new UserInfoRepo())));
+            services.Add(new ServiceDescriptor(typeof(ILogInService), new LogInService(new UserInfoRepo(), new PassRepo())));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
