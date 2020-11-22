@@ -2,6 +2,7 @@
 using Services.Abstraction;
 using Repositories;
 using System.Linq;
+using DevOne.Security.Cryptography.BCrypt;
 
 namespace Services
 {
@@ -21,9 +22,8 @@ namespace Services
                 var User = _userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
                 if (User == null)
                     return false;
-                var Pass = _passRepo.AsQueryable().Where(x => x.Userid == UserId).FirstOrDefault();
-                //CustomHash.ValidatePassword(Password, Pass.Userpass);
-                if (Pass.Userpass == Password)
+                var Pass = _passRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
+                if (BCryptHelper.CheckPassword(Password, Pass.Userpass))
                 {
                     return true;
                 }
