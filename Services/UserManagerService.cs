@@ -41,6 +41,36 @@ namespace Services
                 return null;
         }
 
+        public bool UpdateUser(UserInfo userInfo)
+        {
+            try
+            {
+                UmsUserinfo entity = userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == userInfo.UserId);
+                entity.Name = userInfo.Name;
+                entity.Userid = userInfo.UserId;
+                entity.Categoryid = userInfo.CategoryId;
+                entity.Catidval = userInfo.Catidval;
+                entity.Cellno = userInfo.Cellno;
+                entity.Dob = string.IsNullOrEmpty(userInfo.Dob) ? "" : userInfo.Dob;
+                entity.Email = userInfo.Email;
+                entity.Ipaddress = userInfo.Ipaddress;
+                entity.Macaddress = userInfo.Macaddress;
+                entity.Mfa = userInfo.Mfa;
+                entity.Picture = userInfo.Picture;
+                entity.Recstatus = userInfo.Recstatus;
+                entity.Signature = userInfo.Signature;
+                entity.Thumb = userInfo.Thumb;
+                userInfoRepo.Update(entity);
+                userInfoRepo.Commit();
+                userInfoRepo.Save();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         private static UmsUserinfo CastToEntity(UserInfo userInfo)
         {
             return new UmsUserinfo

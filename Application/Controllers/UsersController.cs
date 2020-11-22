@@ -41,5 +41,15 @@ namespace Application.Controllers
             else
                 return Ok(userInfo);
         }
+
+        [HttpPost]
+        [Route("Update")]
+        public IActionResult UpdateUser(UserInfo userInfo)
+        {
+            if (userManagerService.UpdateUser(userInfo))
+                return Ok();
+            else
+                return StatusCode((int)HttpStatusCode.NotFound);
+        }
     }
 }
