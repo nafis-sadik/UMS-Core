@@ -3,6 +3,9 @@ using Services.Abstraction;
 using Repositories;
 using System.Linq;
 using DevOne.Security.Cryptography.BCrypt;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Services
 {
@@ -15,8 +18,10 @@ namespace Services
             _userInfoRepo = userInfoRepo;
             _passRepo = passRepo;
         }
-        public bool AuthenticateUser(string UserId, string Password)
+        public bool AuthenticateUser(string UserId, string Password, out byte[]? Token, out string? Salt)
         {
+            Token = null;
+            Salt = null;
             try
             {
                 var User = _userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
@@ -25,6 +30,9 @@ namespace Services
                 var Pass = _passRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
                 if (BCryptHelper.CheckPassword(Password, Pass.Userpass))
                 {
+                    Salt = BCryptHelper.GenerateSalt();
+                    byte[] salt = Encoding.Default.GetBytes(Salt);
+                    Token = KeyDerivation.Pbkdf2(Password, salt, KeyDerivationPrf.HMACSHA1, 1000, 256);
                     return true;
                 }
                 return false;

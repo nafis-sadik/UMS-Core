@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 /* API Documentation
  * Action : AddNewUser
- * Response : Accepted - LogIn Successful
+ * Response : Created - Sign up Successful
  *            InternalServerError - Un handeled exception found, start debuging
  *            Conflict - User Already exists
  * Action : GetUser
@@ -19,7 +19,7 @@ using System.Threading.Tasks;
  *            Ok - User found successfully, object also returned
  * Action : UpdateUser
  * Response : Ok - Successful
- *            InternalServerError - Un handeled exception found, start debuging
+ *            NotModified - Failed to Update, unhandeled exception occured, start debuging
  */
 
 namespace Application.Controllers
@@ -38,10 +38,10 @@ namespace Application.Controllers
         [Route("Add")]
         public IActionResult AddNewUser(UserInfo userInfo)
         {
-            bool response = _userManagerService.AddNewUser(userInfo);
-            if (response)
-                return StatusCode((int)HttpStatusCode.Accepted);
-            else if (!response)
+            bool? response = _userManagerService.AddNewUser(userInfo);
+            if (response == true)
+                return StatusCode((int)HttpStatusCode.Created);
+            else if (response == false)
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             else
                 return StatusCode((int)HttpStatusCode.Conflict);
@@ -65,7 +65,7 @@ namespace Application.Controllers
             if (_userManagerService.UpdateUser(userInfo))
                 return Ok();
             else
-                return StatusCode((int)HttpStatusCode.InternalServerError);
+                return StatusCode((int)HttpStatusCode.NotModified);
         }
     }
 }
