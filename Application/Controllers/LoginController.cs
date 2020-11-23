@@ -20,12 +20,21 @@ namespace Application.Controllers
             _logInService = logInService;
         }
 
+        class UserTTTTT
+        {
+            public string userId, pass;
+        }
+
         [HttpPost]
         [Route("Login/{UserId}/{Pass}")]
         public ActionResult Login(string UserId, string Pass)
         {
-            if (_logInService.AuthenticateUser(UserId, Pass))
-                return Ok();
+            if (_logInService.AuthenticateUser(UserId, Pass, out byte[]? Token, out string? Salt))
+            {
+                if(!string.IsNullOrEmpty(Salt))
+                    HttpContext.Session.SetString(UserId, Salt);
+                return Ok(Token);
+            }
             else
                 return StatusCode((int)HttpStatusCode.NotFound);
         }

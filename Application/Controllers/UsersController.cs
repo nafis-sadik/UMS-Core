@@ -19,7 +19,7 @@ using System.Threading.Tasks;
  *            Ok - User found successfully, object also returned
  * Action : UpdateUser
  * Response : Ok - Successful
- *            InternalServerError - Un handeled exception found, start debuging
+ *            NotModified - Failed to Update, unhandeled exception occured, start debuging
  */
 
 namespace Application.Controllers
@@ -65,7 +65,7 @@ namespace Application.Controllers
             if (_userManagerService.UpdateUser(userInfo))
                 return Ok();
             else
-                return StatusCode((int)HttpStatusCode.InternalServerError);
+                return StatusCode((int)HttpStatusCode.NotModified);
         }
     }
 }

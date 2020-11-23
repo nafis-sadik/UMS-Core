@@ -32,11 +32,18 @@ namespace Application
             services.Add(new ServiceDescriptor(typeof(IUserInfoRepo), new UserInfoRepo()));
             services.Add(new ServiceDescriptor(typeof(IUserManagerService), new UserManagerService(new UserInfoRepo())));
             services.Add(new ServiceDescriptor(typeof(ILogInService), new LogInService(new UserInfoRepo(), new PassRepo())));
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(45);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("MyPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -52,6 +59,8 @@ namespace Application
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSession();
         }
     }
 }

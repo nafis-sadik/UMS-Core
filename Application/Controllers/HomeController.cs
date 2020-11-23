@@ -20,15 +20,5 @@ namespace Application.Controllers
             _logInService = logInService;
             _userManagerService = userManagerService;
         }
-
-        [HttpPost]
-        [Route("TestingCon")]
-        public ActionResult TestingCon(string UserId, string Pass)
-        {
-            if (_logInService.AuthenticateUser(UserId, Pass))
-                return Ok();
-            else
-                return Conflict();
-        }
     }
 }
