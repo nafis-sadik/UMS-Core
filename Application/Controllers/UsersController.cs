@@ -35,7 +35,7 @@ namespace Application.Controllers
             _userManagerService = userManagerService;
         }
         
-        [HttpPost]
+        [HttpPut]
         [Route("Add")]
         [CustomAuthentication]
         public IActionResult AddNewUser(UserInfo userInfo)
@@ -70,6 +70,14 @@ namespace Application.Controllers
                 return Ok();
             else
                 return StatusCode((int)HttpStatusCode.NotModified);
+        }
+
+        [HttpGet]
+        [Route("GetAll")]
+        [CustomAuthentication]
+        public IActionResult GetAllUsers(PagingParam pagingParam)
+        {
+            return Ok(_userManagerService.GetAllUsers(pagingParam));
         }
     }
 }

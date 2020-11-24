@@ -116,5 +116,16 @@ namespace Services
                 Thumb = userInfo.Thumb
             };
         }
+
+        public List<UserInfo> GetAllUsers(PagingParam pagingParam)
+        {
+            List<UmsUserinfo> users = _userInfoRepo.AsQueryable().OrderByDescending(x => x.Userid).Skip(pagingParam.Skip).Take(pagingParam.PageSize).ToList();
+            List<UserInfo> response = new List<UserInfo>();
+            foreach(UmsUserinfo user in users)
+            {
+                response.Add(CastToModel(user));
+            }
+            return response;
+        }
     }
 }
