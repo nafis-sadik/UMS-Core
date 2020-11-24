@@ -33,12 +33,10 @@ namespace Application.Controllers
             {
                 if (!string.IsNullOrEmpty(Salt))
                     HttpContext.Session.SetString(UserId, Salt);
-                return Ok(Token);
-              
+                return Ok(Token);            
             }
             else
                 return StatusCode((int)HttpStatusCode.NotFound);
-               
         }
     }
 }
