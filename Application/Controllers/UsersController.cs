@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Application.Helper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Services;
@@ -36,6 +37,7 @@ namespace Application.Controllers
         
         [HttpPost]
         [Route("Add")]
+        [CustomAuthentication]
         public IActionResult AddNewUser(UserInfo userInfo)
         {
             bool? response = _userManagerService.AddNewUser(userInfo);
@@ -49,6 +51,7 @@ namespace Application.Controllers
 
         [HttpGet]
         [Route("Get/{UserId}")]
+        [CustomAuthentication]
         public IActionResult GetUser(string UserId)
         {
             UserInfo userInfo = _userManagerService.GetUser(UserId);
@@ -60,6 +63,7 @@ namespace Application.Controllers
 
         [HttpPost]
         [Route("Update")]
+        [CustomAuthentication]
         public IActionResult UpdateUser(UserInfo userInfo)
         {
             if (_userManagerService.UpdateUser(userInfo))
