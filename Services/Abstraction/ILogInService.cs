@@ -2,6 +2,7 @@
 {
     public interface ILogInService
     {
-        public bool AuthenticateUser(string UserId, string Password, out byte[]? Token, out string? Salt);
+        public bool AuthenticateUser(string UserId, string Password, out byte[] Token, out string Salt);
+        public string GetPasswordForUser(string UserId);
     }
 }

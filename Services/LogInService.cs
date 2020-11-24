@@ -18,21 +18,19 @@ namespace Services
             _userInfoRepo = userInfoRepo;
             _passRepo = passRepo;
         }
-        public bool AuthenticateUser(string UserId, string Password, out byte[]? Token, out string? Salt)
+        public bool AuthenticateUser(string UserId, string Password, out byte[] Token, out string Salt)
         {
             Token = null;
-            Salt = null;
+            Salt = "";
             try
             {
                 var User = _userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
                 if (User == null)
                     return false;
-                var Pass = _passRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
-                if (BCryptHelper.CheckPassword(Password, Pass.Userpass))
+                if (BCryptHelper.CheckPassword(Password, GetPasswordForUser(UserId)))
                 {
                     Salt = BCryptHelper.GenerateSalt();
-                    byte[] salt = Encoding.Default.GetBytes(Salt);
-                    Token = KeyDerivation.Pbkdf2(Password, salt, KeyDerivationPrf.HMACSHA1, 1000, 256);
+                    Token = KeyDerivation.Pbkdf2(UserId, Encoding.Default.GetBytes(Salt), KeyDerivationPrf.HMACSHA1, 1000, 256);
                     return true;
                 }
                 return false;
@@ -40,6 +38,11 @@ namespace Services
             {
                 return false;
             }
+        }
+        public string GetPasswordForUser(string UserId)
+        {
+            var Pass = _passRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
+            return Pass.Userpass;
         }
     }
 }

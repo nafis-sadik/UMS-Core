@@ -8,8 +8,6 @@ namespace Repositories
 {
     public interface IUserInfoRepo : IRepositoryBase<UmsUserinfo> { }
     public class UserInfoRepo : RepositoryBase<UmsUserinfo>, IUserInfoRepo { }
-    //public interface IUserInfoRepo : IRepositoryBase<UMS_USERINFO> { }
-    //public class UserInfoRepo : RepositoryBase<UMS_USERINFO>, IUserInfoRepo { }
     public interface IPassRepo : IRepositoryBase<UmsPass> { }
     public class PassRepo : RepositoryBase<UmsPass>, IPassRepo { }
 }

@@ -20,20 +20,23 @@ namespace Application.Controllers
             _logInService = logInService;
         }
 
-        class UserTTTTT
-        {
-            public string userId, pass;
-        }
-
         [HttpPost]
         [Route("Login/{UserId}/{Pass}")]
         public ActionResult Login(string UserId, string Pass)
         {
-            if (_logInService.AuthenticateUser(UserId, Pass, out byte[]? Token, out string? Salt))
+            if (_logInService.AuthenticateUser(UserId, Pass, out byte[] Token, out string Salt))
             {
-                if (!string.IsNullOrEmpty(Salt))
+                if (Token != null)
+                {
                     HttpContext.Session.SetString(UserId, Salt);
+<<<<<<< HEAD
                 return Ok(Token);            
+=======
+                    return Ok(Token);
+                }
+                else
+                    return StatusCode((int)HttpStatusCode.InternalServerError);
+>>>>>>> 35b95c84ac04d454f466ed1a483b2830fe6cb577
             }
             else
                 return StatusCode((int)HttpStatusCode.NotFound);
