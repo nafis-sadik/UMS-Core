@@ -51,6 +51,8 @@ namespace Application
 
             app.UseHttpsRedirection();
 
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -60,7 +62,6 @@ namespace Application
                 endpoints.MapControllers();
             });
 
-            
         }
     }
 }
