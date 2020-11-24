@@ -31,12 +31,14 @@ namespace Application.Controllers
         {
             if (_logInService.AuthenticateUser(UserId, Pass, out byte[]? Token, out string? Salt))
             {
-                if(!string.IsNullOrEmpty(Salt))
+                if (!string.IsNullOrEmpty(Salt))
                     HttpContext.Session.SetString(UserId, Salt);
                 return Ok(Token);
+              
             }
             else
                 return StatusCode((int)HttpStatusCode.NotFound);
+               
         }
     }
 }
