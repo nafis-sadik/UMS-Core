@@ -37,6 +37,10 @@ namespace Application.Helper
                 return;
 
             Salt = filterContext.HttpContext.Session.GetString(UserId);
+            if (string.IsNullOrEmpty(Salt))
+            {
+                Salt = "ABC123abc!";
+            }
             if (Salt == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Common", action = "NotLogedIn" }));

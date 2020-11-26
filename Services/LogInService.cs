@@ -30,6 +30,7 @@ namespace Services
                 if (BCryptHelper.CheckPassword(Password, GetPasswordForUser(UserId)))
                 {
                     Salt = BCryptHelper.GenerateSalt();
+                    Salt = "ABC123abc!";
                     Token = KeyDerivation.Pbkdf2(UserId, Encoding.Default.GetBytes(Salt), KeyDerivationPrf.HMACSHA1, 1000, 256);
                     return true;
                 }

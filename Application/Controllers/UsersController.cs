@@ -73,10 +73,13 @@ namespace Application.Controllers
         }
 
         [HttpGet]
-        [Route("GetAll")]
+        [Route("GetAll/{Page}")]
         [CustomAuthentication]
-        public IActionResult GetAllUsers(PagingParam pagingParam)
+        public IActionResult GetAllUsers(int Page)
         {
+            PagingParam pagingParam = new PagingParam();
+            pagingParam.Page = Page;
+            pagingParam.PageSize = 10;
             return Ok(_userManagerService.GetAllUsers(pagingParam));
         }
     }
