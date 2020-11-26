@@ -1,4 +1,5 @@
-﻿using Dotnet_Core_Scaffolding_Oracle.Models;
+﻿using DevOne.Security.Cryptography.BCrypt;
+using Dotnet_Core_Scaffolding_Oracle.Models;
 using Models;
 using Models.DB;
 using Repositories;
@@ -13,10 +14,12 @@ namespace Services
     public class UserManagerService : IUserManagerService
     {
         private IUserInfoRepo _userInfoRepo;
+        private IPassRepo _passRepo;
 
-        public UserManagerService(IUserInfoRepo userInfoRepo)
+        public UserManagerService(IUserInfoRepo userInfoRepo, IPassRepo passRepo)
         {
             _userInfoRepo = userInfoRepo;
+            _passRepo = passRepo;
         }
 
         public bool? AddNewUser(UserInfo userInfo)
@@ -128,6 +131,33 @@ namespace Services
                 response.Add(CastToModel(user));
             }
             return response;
+        }
+
+        public bool ChangePassword(string UserId, string OldPass, string NewPass)
+        {
+            var userPass = _passRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
+            try
+            {
+                if (BCryptHelper.CheckPassword(OldPass, userPass.Userpass))
+                {
+                    return true;
+                    //string xxxxxx = BCryptHelper.HashPassword(OldPass);
+                    userPass.Userpass = NewPass;
+                    _userInfoRepo.Save();
+                    _userInfoRepo.Commit();
+                    return true;
+                }
+                else
+                {
+                    _userInfoRepo.Rollback();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _userInfoRepo.Rollback();
+                return false;
+            }
         }
     }
 }

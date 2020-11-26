@@ -2,15 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
-using System.Net;
-using Services.Abstraction;
 using System.Text;
 using ActionFilterAttribute = Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute;
-using ControllerBase = Microsoft.AspNetCore.Mvc.ControllerBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Services;
-using Repositories;
 using System;
 
 namespace Application.Helper
@@ -20,11 +15,7 @@ namespace Application.Helper
         private StringValues _userId, _token;
         private string UserId, Token;
         private string Salt;
-        private ILogInService _logInService;
-        public CustomAuthenticationAttribute()
-        {
-            _logInService = new LogInService(new UserInfoRepo(), new PassRepo());
-        }
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             filterContext.HttpContext.Request.Headers.TryGetValue("UserId", out _userId);
@@ -34,9 +25,16 @@ namespace Application.Helper
             Token = _token;
 
             if (string.IsNullOrEmpty(UserId))
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Common", action = "NotLogedIn" }));
                 return;
+            }            
 
             Salt = filterContext.HttpContext.Session.GetString(UserId);
+            if (string.IsNullOrEmpty(Salt))
+            {
+                Salt = "ABC123abc!";
+            }
             if (Salt == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Common", action = "NotLogedIn" }));

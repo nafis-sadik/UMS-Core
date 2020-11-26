@@ -73,11 +73,24 @@ namespace Application.Controllers
         }
 
         [HttpGet]
-        [Route("GetAll")]
+        [Route("GetAll/{PageNumber}")]
         [CustomAuthentication]
-        public IActionResult GetAllUsers(PagingParam pagingParam)
+        public IActionResult GetAllUsers(int PageNumber)
         {
+            PagingParam pagingParam = new PagingParam();
+            pagingParam.Page = PageNumber;
+            pagingParam.PageSize = 10;
             return Ok(_userManagerService.GetAllUsers(pagingParam));
+        }
+
+        [HttpPost]
+        [Route("ChangePassword/{UserId}/{OldPass}/{NewPass}")]
+        public IActionResult ChangePassword(string UserId, string OldPass, string NewPass)
+        {
+            if (_userManagerService.ChangePassword(UserId, OldPass, NewPass))
+                return Ok();
+            else
+                return StatusCode((int)HttpStatusCode.InternalServerError);
         }
     }
 }
