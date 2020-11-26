@@ -25,7 +25,7 @@ namespace Repositories
         public virtual T Get(int id) => _dbSet.Find(id);
         public virtual void Update(T entity)
         {
-            _dbSet.Attach(entity);
+            _dbSet.Update(entity);
             db.Entry(entity).State = EntityState.Modified;
         }
         public virtual void Delete(T entity)
@@ -42,9 +42,21 @@ namespace Repositories
         }
         public virtual IQueryable<T> AsQueryable() => _dbSet.AsNoTracking().AsQueryable();
         public virtual IEnumerable<T> GetAll() => _dbSet.ToList();
-        public virtual void Commit() => transaction.Commit();
+        public virtual void Commit()
+        {
+            transaction.Commit();
+            Dispose();
+        }
         public virtual void Save() => db.SaveChanges();
-        public virtual void Rollback() => transaction.Rollback();
-        public virtual void Dispose() => transaction.Dispose();
+        public virtual void Rollback()
+        {
+            transaction.Rollback();
+            Dispose();
+        }
+        public virtual void Dispose()
+        {
+            db.Dispose();
+            transaction.Dispose();
+        }
     }
 }
