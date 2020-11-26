@@ -133,16 +133,17 @@ namespace Services
 
         public bool ChangePassword(string UserId, string OldPass, string NewPass)
         {
-            var userPass = _passRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
             try
             {
+                UmsPass userPass = _passRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
                 if (BCryptHelper.CheckPassword(OldPass, userPass.Userpass))
                 {
-                    return true;
-                    //string xxxxxx = BCryptHelper.HashPassword(OldPass);
-                    userPass.Userpass = NewPass;
-                    _userInfoRepo.Save();
-                    _userInfoRepo.Commit();
+                    var Salt = BCryptHelper.GenerateSalt(12);
+                    var Passss = BCryptHelper.HashPassword(NewPass, Salt);
+                    userPass.Userpass = Passss;
+                    _passRepo.Update(userPass);
+                    _passRepo.Save();
+                    _passRepo.Commit();
                     return true;
                 }
                 else
@@ -153,7 +154,8 @@ namespace Services
             }
             catch (Exception ex)
             {
-                _userInfoRepo.Rollback();
+                //_userInfoRepo.Rollback();
+                var msg = ex.Message;
                 return false;
             }
         }
