@@ -15,7 +15,7 @@ namespace Application.Helper
         private StringValues _userId, _token;
         private string UserId, Token;
         private string Salt;
-
+        
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             filterContext.HttpContext.Request.Headers.TryGetValue("UserId", out _userId);

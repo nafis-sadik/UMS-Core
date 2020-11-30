@@ -23,7 +23,7 @@ namespace Application.Controllers
             {
                 if (Token != null)
                 {
-                    HttpContext.Session.SetString(UserId, Salt);
+                    HttpContext.Session.SetString(UserId, Salt);                  
                     return Ok(Token);
                 }
                 else
