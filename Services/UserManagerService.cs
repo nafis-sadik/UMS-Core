@@ -88,16 +88,16 @@ namespace Services
             {
                 Name = userInfo.Name,
                 Userid = userInfo.UserId,
-                Categoryid = 2,
-                Catidval = "s",
+                Categoryid = userInfo.CategoryId,
+                Catidval = userInfo.Catidval,
                 Cellno = userInfo.Cellno,
                 Dob = string.IsNullOrEmpty(userInfo.Dob) ? "" : userInfo.Dob,
                 Email = userInfo.Email,
                 Ipaddress = userInfo.Ipaddress,
                 Macaddress = userInfo.Macaddress,
-                Mfa = "b",
+                Mfa = userInfo.Mfa,
                 Picture = Encoding.ASCII.GetBytes("bb"),
-                Recstatus = "b",
+                Recstatus = userInfo.Recstatus,
                 Signature = Encoding.ASCII.GetBytes("cc"),
                 Thumb = userInfo.Thumb
             };
