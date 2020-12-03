@@ -34,11 +34,7 @@ namespace Application
             services.Add(new ServiceDescriptor(typeof(ILogInService), new LogInService(new UserInfoRepo(), new PassRepo())));
             services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             //services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials()));
-
-            //string[] AllowedHeaders = { "userid", "token", "content-type" };
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()));
             //services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()));
-
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(45);

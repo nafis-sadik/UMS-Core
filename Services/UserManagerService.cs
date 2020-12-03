@@ -15,7 +15,6 @@ namespace Services
     {
         private IUserInfoRepo _userInfoRepo;
         private IPassRepo _passRepo;
-
         public UserManagerService(IUserInfoRepo userInfoRepo, IPassRepo passRepo)
         {
             _userInfoRepo = userInfoRepo;
@@ -27,13 +26,18 @@ namespace Services
             try {
                 UmsUserinfo entity = _userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == userInfo.UserId);
                 if (entity == null)
-                    return null;
-                entity = CastToEntity(userInfo);
-                _userInfoRepo.Add(entity);
-                _userInfoRepo.Save();
-                // throw new ArgumentException("Test Exception", "Successful Invocation");
-                _userInfoRepo.Commit();
-                return true;
+                {
+                    entity = CastToEntity(userInfo);
+                    _userInfoRepo.Add(entity);
+                    _userInfoRepo.Save();
+                    // throw new ArgumentException("Test Exception", "Successful Invocation");
+                    _userInfoRepo.Commit();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             } catch (Exception ex) {
                 _userInfoRepo.Rollback();
                 return false;
@@ -54,22 +58,22 @@ namespace Services
             {
                 UmsUserinfo entity = _userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == userInfo.UserId);
                 entity.Name = userInfo.Name;
-                entity.Userid = userInfo.UserId;
-                entity.Categoryid = userInfo.CategoryId;
-                entity.Catidval = userInfo.Catidval;
+                //entity.Userid = userInfo.UserId;
+                //entity.Categoryid = userInfo.CategoryId;
+                //entity.Catidval = userInfo.Catidval;
                 entity.Cellno = userInfo.Cellno;
                 entity.Dob = string.IsNullOrEmpty(userInfo.Dob) ? "" : userInfo.Dob;
                 entity.Email = userInfo.Email;
-                entity.Ipaddress = userInfo.Ipaddress;
-                entity.Macaddress = userInfo.Macaddress;
-                entity.Mfa = userInfo.Mfa;
-                entity.Picture = userInfo.Picture;
-                entity.Recstatus = userInfo.Recstatus;
-                entity.Signature = userInfo.Signature;
-                entity.Thumb = userInfo.Thumb;
+                //entity.Ipaddress = userInfo.Ipaddress;
+                //entity.Macaddress = userInfo.Macaddress;
+                //entity.Mfa = userInfo.Mfa;
+                //entity.Picture = userInfo.Picture;
+                //entity.Recstatus = userInfo.Recstatus;
+                //entity.Signature = userInfo.Signature;
+                //entity.Thumb = userInfo.Thumb;
                 _userInfoRepo.Update(entity);
-                _userInfoRepo.Commit();
                 _userInfoRepo.Save();
+                _userInfoRepo.Commit();             
                 return true;
             }
             catch (Exception ex)
@@ -84,17 +88,17 @@ namespace Services
             {
                 Name = userInfo.Name,
                 Userid = userInfo.UserId,
-                Categoryid = userInfo.CategoryId,
-                Catidval = userInfo.Catidval,
+                Categoryid = 2,
+                Catidval = "s",
                 Cellno = userInfo.Cellno,
                 Dob = string.IsNullOrEmpty(userInfo.Dob) ? "" : userInfo.Dob,
                 Email = userInfo.Email,
                 Ipaddress = userInfo.Ipaddress,
                 Macaddress = userInfo.Macaddress,
-                Mfa = userInfo.Mfa,
-                Picture = userInfo.Picture,
-                Recstatus = userInfo.Recstatus,
-                Signature = userInfo.Signature,
+                Mfa = "b",
+                Picture = Encoding.ASCII.GetBytes("bb"),
+                Recstatus = "b",
+                Signature = Encoding.ASCII.GetBytes("cc"),
                 Thumb = userInfo.Thumb
             };
         }

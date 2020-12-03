@@ -25,7 +25,7 @@ namespace Repositories
         public virtual T Get(int id) => _dbSet.Find(id);
         public virtual void Update(T entity)
         {
-            _dbSet.Update(entity);
+            _dbSet.Attach(entity);
             db.Entry(entity).State = EntityState.Modified;
         }
         public virtual void Delete(T entity)

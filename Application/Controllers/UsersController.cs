@@ -35,7 +35,7 @@ namespace Application.Controllers
             _userManagerService = userManagerService;
         }
         
-        [HttpPut]
+        [HttpPost]
         [Route("Add")]
         [CustomAuthentication]
         public IActionResult AddNewUser(UserInfo userInfo)
@@ -67,7 +67,7 @@ namespace Application.Controllers
         public IActionResult UpdateUser(UserInfo userInfo)
         {
             if (_userManagerService.UpdateUser(userInfo))
-                return Ok();
+                return Ok(userInfo);
             else
                 return StatusCode((int)HttpStatusCode.NotModified);
         }
