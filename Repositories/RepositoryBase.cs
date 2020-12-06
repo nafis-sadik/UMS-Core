@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using DataAccess;
 using Dotnet_Core_Scaffolding_Oracle.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Repositories
 {
@@ -21,12 +22,21 @@ namespace Repositories
             transaction = db.Database.BeginTransaction();
         }
         public virtual void Add(T entity) => _dbSet.Add(entity);
-        public virtual T Get(Expression<Func<T, bool>> where) => _dbSet.Where(where).FirstOrDefault();
-        public virtual T Get(int id) => _dbSet.Find(id);
+        public virtual T Get(Expression<Func<T, bool>> where)
+        {
+            DetachAllEntities();
+            return _dbSet.Where(where).FirstOrDefault();
+        }
+        public virtual T Get(int id)
+        {
+            DetachAllEntities();
+            return _dbSet.Find(id);
+        }
         public virtual void Update(T entity)
         {
-            _dbSet.Attach(entity);
+            _dbSet.Update(entity);
             db.Entry(entity).State = EntityState.Modified;
+            db.SaveChanges();
         }
         public virtual void Delete(T entity)
         {
@@ -45,18 +55,29 @@ namespace Repositories
         public virtual void Commit()
         {
             transaction.Commit();
-            Dispose();
+            DetachAllEntities();
         }
         public virtual void Save() => db.SaveChanges();
         public virtual void Rollback()
         {
             transaction.Rollback();
-            Dispose();
+            DetachAllEntities();
         }
         public virtual void Dispose()
         {
             db.Dispose();
             transaction.Dispose();
+        }
+        public void DetachAllEntities()
+        {
+            IEnumerable<EntityEntry> changedEntriesCopy = db.ChangeTracker.Entries()
+                .Where(x => x.State == EntityState.Modified
+                        || x.State == EntityState.Added
+                        || x.State == EntityState.Deleted);
+            foreach (var entity in changedEntriesCopy)
+            {
+                entity.State = EntityState.Detached;
+            }
         }
     }
 }

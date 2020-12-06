@@ -52,11 +52,12 @@ namespace Services
             else
                 return null;
         }
+
         public bool UpdateUser(UserInfo userInfo)
         {
             try
             {
-                UmsUserinfo entity = _userInfoRepo.AsQueryable().FirstOrDefault(x => x.Userid == userInfo.UserId);
+                UmsUserinfo entity = _userInfoRepo.Get(x => x.Userid == userInfo.UserId);
                 entity.Name = userInfo.Name;
                 //entity.Userid = userInfo.UserId;
                 //entity.Categoryid = userInfo.CategoryId;
@@ -72,8 +73,8 @@ namespace Services
                 //entity.Signature = userInfo.Signature;
                 //entity.Thumb = userInfo.Thumb;
                 _userInfoRepo.Update(entity);
-                _userInfoRepo.Save();
-                _userInfoRepo.Commit();             
+                //_userInfoRepo.Save();
+                //_userInfoRepo.Commit();             
                 return true;
             }
             catch (Exception ex)
@@ -82,6 +83,7 @@ namespace Services
                 return false;
             }
         }
+
         private static UmsUserinfo CastToEntity(UserInfo userInfo)
         {
             return new UmsUserinfo
