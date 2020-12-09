@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Dotnet-Core-Scaffolding-Oracle">
-      <HintPath>..\Dotnet-Core-Scaffolding-Oracle.dll</HintPath>
+    <Reference Include="DBAccessPublish">
+      <HintPath>..\DataAccessPublish\DBAccessPublish.dll</HintPath>
     </Reference>
   </ItemGroup>
 
