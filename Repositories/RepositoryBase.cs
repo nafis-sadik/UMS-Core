@@ -9,7 +9,7 @@ using Dotnet_Core_Scaffolding_Oracle.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Repositories
-{
+{ 
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         private ModelContext db;
