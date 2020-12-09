@@ -14,7 +14,9 @@ namespace Repositories
     {
         private ModelContext db;
         private DbSet<T> _dbSet;
+
         //private readonly IDbContextTransaction transaction;
+
         internal RepositoryBase()
         {
             db = new ModelContext();
@@ -34,9 +36,11 @@ namespace Repositories
         }
         public virtual void Update(T entity)
         {
+            db = new ModelContext();
             _dbSet.Update(entity);
             db.Entry(entity).State = EntityState.Modified;
             db.SaveChanges();
+            db.Dispose();
         }
         public virtual void Delete(T entity)
         {
