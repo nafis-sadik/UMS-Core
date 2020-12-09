@@ -92,5 +92,16 @@ namespace Application.Controllers
             else
                 return StatusCode((int)HttpStatusCode.InternalServerError);
         }
+
+        [HttpPost]
+        [Route("ResetPassword/{UserId}")]
+        public IActionResult ResetPassword(string UserId)
+        {
+            if (_userManagerService.ResetPassword(UserId))
+                return Ok();
+            else
+                return StatusCode((int)HttpStatusCode.InternalServerError);
+        }
     }
 }
+

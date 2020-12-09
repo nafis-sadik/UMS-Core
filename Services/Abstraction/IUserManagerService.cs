@@ -12,5 +12,6 @@ namespace Services.Abstraction
         bool UpdateUser(UserInfo userInfo);
         List<UserInfo> GetAllUsers(PagingParam pagingParam);
         bool ChangePassword(string UserId, string OldPass, string NewPass);
+        bool ResetPassword(string UserId);
     }
 }

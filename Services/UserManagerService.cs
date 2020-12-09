@@ -165,5 +165,33 @@ namespace Services
                 return false;
             }
         }
+
+        public bool ResetPassword(string UserId)
+        {
+            try
+            {
+                UmsPass userPass = _passRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
+                if (userPass != null)
+                {
+                    var Salt = BCryptHelper.GenerateSalt(12);
+                    var Pass = BCryptHelper.HashPassword("123456", Salt);
+                    userPass.Userpass = Pass;
+                    _passRepo.Update(userPass);
+                    _passRepo.Save();
+                    _passRepo.Commit();
+                    return true;
+                }
+                else
+                {
+                    _userInfoRepo.Rollback();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _userInfoRepo.Rollback();
+                return false;
+            }
+        }
     }
 }

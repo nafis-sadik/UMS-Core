@@ -14,12 +14,12 @@ namespace Repositories
     {
         private ModelContext db;
         private DbSet<T> _dbSet;
-        private readonly IDbContextTransaction transaction;
+        //private readonly IDbContextTransaction transaction;
         internal RepositoryBase()
         {
             db = new ModelContext();
             _dbSet = db.Set<T>();
-            transaction = db.Database.BeginTransaction();
+            //transaction = db.Database.BeginTransaction();
         }
         public virtual void Add(T entity) => _dbSet.Add(entity);
         public virtual T Get(Expression<Func<T, bool>> where)
@@ -54,19 +54,19 @@ namespace Repositories
         public virtual IEnumerable<T> GetAll() => _dbSet.ToList();
         public virtual void Commit()
         {
-            transaction.Commit();
+            //transaction.Commit();
             DetachAllEntities();
         }
         public virtual void Save() => db.SaveChanges();
         public virtual void Rollback()
         {
-            transaction.Rollback();
+            //transaction.Rollback();
             DetachAllEntities();
         }
         public virtual void Dispose()
         {
             db.Dispose();
-            transaction.Dispose();
+            //transaction.Dispose();
         }
         public void DetachAllEntities()
         {
