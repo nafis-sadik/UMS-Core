@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,9 +30,17 @@ namespace Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.Add(new ServiceDescriptor(typeof(IUserInfoRepo), new UserInfoRepo()));
-            services.Add(new ServiceDescriptor(typeof(IUserManagerService), new UserManagerService(new UserInfoRepo(), new PassRepo())));
-            services.Add(new ServiceDescriptor(typeof(ILogInService), new LogInService(new UserInfoRepo(), new PassRepo())));
+            services.AddScoped<IUserInfoRepo, UserInfoRepo>();
+            services.AddScoped(typeof(IUserInfoRepo), typeof (UserInfoRepo));
+
+            services.AddScoped<IPassRepo, PassRepo>();
+            services.AddScoped(typeof(IPassRepo), typeof(PassRepo));
+
+            services.AddScoped<IUserManagerService, UserManagerService>();
+            services.AddScoped(typeof(IUserManagerService), typeof (UserManagerService));
+
+            services.AddScoped<ILogInService, LogInService>();
+            services.AddScoped(typeof(ILogInService), typeof(LogInService));
             services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             //services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials()));
             //services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()));
