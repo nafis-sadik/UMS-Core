@@ -141,7 +141,6 @@ namespace Services
         {
             try
             {
-                _passRepo.
                 UmsPass userPass = _passRepo.AsQueryable().FirstOrDefault(x => x.Userid == UserId);
                 if (BCryptHelper.CheckPassword(OldPass, userPass.Userpass))
                 {

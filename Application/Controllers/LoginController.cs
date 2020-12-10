@@ -30,7 +30,7 @@ namespace Application.Controllers
                     return StatusCode((int)HttpStatusCode.InternalServerError);
             }
             else
-                return StatusCode((int)HttpStatusCode.NotFound);
+                return StatusCode((int)HttpStatusCode.Conflict);
         }
     }
 }

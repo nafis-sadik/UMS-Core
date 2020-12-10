@@ -36,11 +36,9 @@ namespace Repositories
         }
         public virtual void Update(T entity)
         {
-            db = new ModelContext();
             _dbSet.Update(entity);
             db.Entry(entity).State = EntityState.Modified;
             db.SaveChanges();
-            db.Dispose();
         }
         public virtual void Delete(T entity)
         {
