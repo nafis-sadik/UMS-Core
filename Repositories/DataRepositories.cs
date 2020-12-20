@@ -16,4 +16,9 @@ namespace Repositories
     {
         public PassRepo() : base() { }
     }
+    public interface IRoleRepo : IRepositoryBase<UmsRole> { }
+    public class RoleRepo : RepositoryBase<UmsRole>, IRoleRepo
+    {
+        public RoleRepo() : base() { }
+    }
 }

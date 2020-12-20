@@ -36,11 +36,18 @@ namespace Application
             services.AddScoped<IPassRepo, PassRepo>();
             services.AddScoped(typeof(IPassRepo), typeof(PassRepo));
 
+            services.AddScoped<IRoleRepo, RoleRepo>();
+            services.AddScoped(typeof(IRoleRepo), typeof(RoleRepo));
+
             services.AddScoped<IUserManagerService, UserManagerService>();
             services.AddScoped(typeof(IUserManagerService), typeof (UserManagerService));
 
             services.AddScoped<ILogInService, LogInService>();
-            services.AddScoped(typeof(ILogInService), typeof(LogInService));
+            services.AddScoped(typeof(ILogInService), typeof (LogInService));
+
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped(typeof(IRoleService), typeof (RoleService));
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             //services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials()));
             //services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()));
