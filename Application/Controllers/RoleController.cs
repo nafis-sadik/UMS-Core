@@ -41,5 +41,16 @@ namespace Application.Controllers
             else
                 return Ok(roleInfo);
         }
+        [HttpPost]
+        [Route("UpdateRoleInfo")]
+        //[CustomAuthentication]
+        public IActionResult UpdateRoleInformation(RoleInfo roleInfo)
+        {
+            if (_roleService.UpdateRoleInformation(roleInfo))
+                return Ok(roleInfo);
+            else
+                return StatusCode((int)HttpStatusCode.NotModified);
+        }
+
     }
 }

@@ -39,6 +39,15 @@ namespace Application
             services.AddScoped<IRoleRepo, RoleRepo>();
             services.AddScoped(typeof(IRoleRepo), typeof(RoleRepo));
 
+            services.AddScoped<IRoleDetailRepo, RoleDetailRepo>();
+            services.AddScoped(typeof(IRoleDetailRepo), typeof(RoleDetailRepo));
+
+            services.AddScoped<IAuthqueRepo, AuthqueRepo>();
+            services.AddScoped(typeof(IAuthqueRepo), typeof(AuthqueRepo));
+
+            services.AddScoped<IFeatureConfigRepo, FeatureConfigRepo>();
+            services.AddScoped(typeof(IFeatureConfigRepo), typeof(FeatureConfigRepo));
+
             services.AddScoped<IUserManagerService, UserManagerService>();
             services.AddScoped(typeof(IUserManagerService), typeof (UserManagerService));
 
