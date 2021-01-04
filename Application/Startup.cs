@@ -48,6 +48,12 @@ namespace Application
             services.AddScoped<IFeatureConfigRepo, FeatureConfigRepo>();
             services.AddScoped(typeof(IFeatureConfigRepo), typeof(FeatureConfigRepo));
 
+            services.AddScoped<IAppConfigRepo, AppConfigRepo>();
+            services.AddScoped(typeof(IAppConfigRepo), typeof(AppConfigRepo));
+
+            services.AddScoped<IModuleConfigRepo, ModuleConfigRepo>();
+            services.AddScoped(typeof(IModuleConfigRepo), typeof(ModuleConfigRepo));
+
             services.AddScoped<IUserManagerService, UserManagerService>();
             services.AddScoped(typeof(IUserManagerService), typeof (UserManagerService));
 
@@ -56,6 +62,9 @@ namespace Application
 
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped(typeof(IRoleService), typeof (RoleService));
+
+            services.AddScoped<IRoleFeatureService, RoleFeatureService>();
+            services.AddScoped(typeof(IRoleFeatureService), typeof(RoleFeatureService));
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             //services.AddCors(o => o.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials()));

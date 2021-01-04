@@ -10,5 +10,7 @@ namespace Services.Abstraction
         List<RoleInfo> GetRoleInformations(PagingParam pagingParam);
         RoleInfo GetRoleInformation(long Roleid);
         bool UpdateRoleInformation(RoleInfo roleInfo);
+        public dynamic GetUserInfo(string UserId);
+        bool AddRoleInformation(RoleInfo roleInfo);
     }
 }

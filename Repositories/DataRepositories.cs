@@ -6,6 +6,14 @@ using Dotnet_Core_Scaffolding_Oracle.Models;
 
 namespace Repositories
 {
+    //UmsUserinfo
+    //UmsPass
+    //UmsRole
+    //UmsRoledtl
+    //UmsAuthque
+    //UmsFeatureconfig
+    //UmsAppconfig
+    //UmsModuleconfig
     public interface IUserInfoRepo : IRepositoryBase<UmsUserinfo> { }
     public class UserInfoRepo : RepositoryBase<UmsUserinfo>, IUserInfoRepo
     {
@@ -39,5 +47,17 @@ namespace Repositories
     public class FeatureConfigRepo : RepositoryBase<UmsFeatureconfig>, IFeatureConfigRepo
     {
         public FeatureConfigRepo() : base() { }
+    }
+
+    public interface IAppConfigRepo : IRepositoryBase<UmsAppconfig> { }
+    public class AppConfigRepo : RepositoryBase<UmsAppconfig>, IAppConfigRepo
+    {
+        public AppConfigRepo() : base() { }
+    }
+
+    public interface IModuleConfigRepo : IRepositoryBase<UmsModuleconfig> { }
+    public class ModuleConfigRepo : RepositoryBase<UmsModuleconfig>, IModuleConfigRepo
+    {
+        public ModuleConfigRepo() : base() { }
     }
 }

@@ -13,6 +13,8 @@ namespace UMSApi.Helpers
                             Decline = "D", 
                             Pending = "P",
                             Authorized = "A",
+                            AppId = "UMS",
+                            RoleControllerName="role",
 
                             SessionActive="A",
                             SessionInactive="I",
@@ -20,6 +22,8 @@ namespace UMSApi.Helpers
 
                             Allowed = "Y",
                             NotAllowed = "N";
+
+                            
 
     }
 

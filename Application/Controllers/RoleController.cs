@@ -52,5 +52,25 @@ namespace Application.Controllers
                 return StatusCode((int)HttpStatusCode.NotModified);
         }
 
+        //Not required
+        [HttpGet("Get/{UserId}")]
+        public IActionResult GetUserInfo(string UserId)
+        {
+            var a = _roleService.GetUserInfo(UserId);
+            if (a == null)
+                return StatusCode((int)HttpStatusCode.NotFound);
+            else
+                return Ok(a);
+        }
+        [HttpPost]
+        [Route("AddRoleInfo")]
+        //[CustomAuthentication]
+        public IActionResult AddRoleInformation(RoleInfo roleInfo)
+        {
+            if (_roleService.AddRoleInformation(roleInfo))
+                return Ok();
+            else
+                return StatusCode((int)HttpStatusCode.NotAcceptable);
+        }
     }
 }
