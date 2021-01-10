@@ -63,5 +63,16 @@ namespace Application.Controllers
             var list = _roleFeatureService.ModuleFeatureList(moduleId);
             return Ok(list);
         }
+
+        [HttpPost]
+        [Route("AddRoleDetailInfo")]
+        //[CustomAuthentication]
+        public IActionResult AddRoleDetailInfo(RoleDetailsInfo roleDetailsInfo)
+        {
+            if (_roleFeatureService.AddRoleDetailInfo(roleDetailsInfo))
+                return Ok();
+            else
+                return StatusCode((int)HttpStatusCode.NotAcceptable);
+        }
     }
 }

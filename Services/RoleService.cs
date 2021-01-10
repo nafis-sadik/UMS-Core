@@ -51,7 +51,6 @@ namespace Services
             }
             return response;
         }
-
         private static RoleInfo CastToModel(UmsRole roleInfo)
         {
             if (roleInfo.Recstatus == "A")
@@ -70,7 +69,6 @@ namespace Services
                 Recstatus=roleInfo.Recstatus
             };
         }
-
         public RoleInfo GetRoleInformation(long Roleid)
         {
             UmsRole data = _roleRepo.AsQueryable().FirstOrDefault(x => x.Roleid == Roleid);
@@ -94,14 +92,15 @@ namespace Services
                     Recstatus = HelperActionConst.Pending
                 };
 
-                var FeatureId = GetUserInfo(roleInfo.UserId);
+                List<Menu> menuList = GetUserInfo(roleInfo.UserId);
+                var menu = (menuList.Where(a => a.MenuLocation != null).ToList()).FirstOrDefault(o => o.MenuLocation.ToLower() == HelperActionConst.RoleControllerName);
 
                 AuthQueDataModel authQueData = new AuthQueDataModel()
                 {
                     ActionType = HelperActionConst.Update,
                     TableName = tableName,
                     PKId = oldData.Roleid.ToString(),
-                    FeatureId = FeatureId,
+                    FeatureId = menu.FeatureId,
                     UserId = roleInfo.UserId,
                     UrlLink = "Role/Details",
                     NewRecord = JsonConvert.SerializeObject(newRecord),
@@ -126,7 +125,7 @@ namespace Services
                 return false;
             }
         }
-        public bool SetAuthQueData(AuthQueDataModel authData)
+        public dynamic SetAuthQueData(AuthQueDataModel authData)
         {
             try
             {
@@ -137,7 +136,7 @@ namespace Services
 
                 UmsAuthque authQue = new UmsAuthque()
                 {
-                    Authqueid = GetDbNextSequence(),
+                    Authqueid = GetDbNextSequenceAuthQue(),
                     Entrydate = DateTime.Now.ToString(),
                     Featureid = authData.FeatureId,
                     Appid = feature.Appid,
@@ -296,18 +295,22 @@ namespace Services
                 }
             }
             var aaa = menulist;
-            var ccc = (aaa.Where(a => a.MenuLocation != null).ToList()).FirstOrDefault(o => o.MenuLocation.ToLower() == HelperActionConst.RoleControllerName);
-            var featureId = ccc.FeatureId;
+            //var ccc = (aaa.Where(a => a.MenuLocation != null).ToList()).FirstOrDefault(o => o.MenuLocation.ToLower() == HelperActionConst.RoleControllerName);
+            //var featureId = ccc.FeatureId;
             
-            var bbb = RoleWisePermission;
-            return featureId;
+            //var bbb = RoleWisePermission;
+            return aaa;
         }
-        public long GetDbNextSequence()
+        public long GetDbNextSequenceRole()
         {
             long maxPK = _roleRepo.AsQueryable().Max(x => x.Roleid);
             return ++maxPK;
         }
-
+        public long GetDbNextSequenceAuthQue()
+        {
+            long maxPK = _authqueRepo.AsQueryable().Max(x => x.Authqueid);
+            return ++maxPK;
+        }
         public bool AddRoleInformation(RoleInfo roleInfo)
         {
             try
@@ -316,19 +319,21 @@ namespace Services
                 umsRole.Rolename = roleInfo.Rolename;
                 umsRole.Purpose = roleInfo.Purpose;
                 umsRole.Recstatus = HelperActionConst.Pending;
-                umsRole.Roleid = GetDbNextSequence();
+                umsRole.Roleid = GetDbNextSequenceRole();
                 _roleRepo.Add(umsRole);
                 _roleRepo.Save();
                 _userInfoRepo.Commit();
 
-                var FeatureId = GetUserInfo(roleInfo.UserId);
+                List<Menu> menuList = GetUserInfo(roleInfo.UserId);
+                var menu = (menuList.Where(a => a.MenuLocation != null).ToList()).FirstOrDefault(o => o.MenuLocation.ToLower() == HelperActionConst.RoleControllerName);
+
                 string tableName = umsRole.GetType().Name;
                 AuthQueDataModel authQueData = new AuthQueDataModel()
                 {
                     ActionType = HelperActionConst.Update,
                     TableName = tableName,
                     PKId = umsRole.Roleid.ToString(),
-                    FeatureId = FeatureId,
+                    FeatureId = menu.FeatureId,
                     UserId = roleInfo.UserId,
                     UrlLink = "Role/Details",
                     NewRecord = JsonConvert.SerializeObject(umsRole),

@@ -12,5 +12,6 @@ namespace Services.Abstraction
         public dynamic DropDownRoleAppList();
         public dynamic AppModuleList(string appId);
         public dynamic ModuleFeatureList(string moduleId);
+        public dynamic AddRoleDetailInfo(RoleDetailsInfo roleDetailsInfo);
     }
 }

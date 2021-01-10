@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UMSApi.Helpers;
+using Dotnet_Core_Scaffolding_Oracle.Models;
+using Newtonsoft.Json;
 
 namespace Services
 {
@@ -16,17 +18,20 @@ namespace Services
         private IAppConfigRepo _appConfigRepo;
         private IModuleConfigRepo _moduleConfigRepo;
         private IFeatureConfigRepo _featureConfigRepo;
+        private IRoleService _roleService;
         public RoleFeatureService(IRoleDetailRepo roleDetailRepo,
                                   IRoleRepo roleRepo,
                                   IAppConfigRepo appConfigRepo,
                                   IModuleConfigRepo moduleConfigRepo,
-                                  IFeatureConfigRepo featureConfigRepo)
+                                  IFeatureConfigRepo featureConfigRepo,
+                                  IRoleService roleService)
         {
             _roleDetailRepo = roleDetailRepo;
             _roleRepo = roleRepo;
             _appConfigRepo = appConfigRepo;
             _moduleConfigRepo = moduleConfigRepo;
             _featureConfigRepo = featureConfigRepo;
+            _roleService = roleService;
         }
         public dynamic GetRoleDetailInformations(PagingParam pagingParam)
         {
@@ -199,6 +204,63 @@ namespace Services
                 return null;
             }
             return moduleFeatureList;
+        }
+
+        public dynamic AddRoleDetailInfo(RoleDetailsInfo roleDetailsInfo)
+        {
+            try
+            {
+                UmsRoledtl umsRoledtl = new UmsRoledtl();
+                umsRoledtl.Roledtlid = GetDbNextSequence();
+                umsRoledtl.Roleid = roleDetailsInfo.RoleId;
+                umsRoledtl.Appid = roleDetailsInfo.AppId.ToString();
+                umsRoledtl.Moduleid = roleDetailsInfo.ModuleId.ToString();
+                umsRoledtl.Featureid = roleDetailsInfo.FeatureId.ToString();
+                umsRoledtl.Createyn = roleDetailsInfo.CancelYN.ToString();
+                umsRoledtl.Edityn = roleDetailsInfo.EditYN.ToString();
+                umsRoledtl.Viewdetailyn = roleDetailsInfo.ViewDetailYN.ToString();
+                umsRoledtl.Deleteyn = roleDetailsInfo.DeleteYN;
+                umsRoledtl.Authyn = roleDetailsInfo.AuthYN.ToString();
+                umsRoledtl.Cancelyn = roleDetailsInfo.CancelYN.ToString();
+                umsRoledtl.Recstatus = HelperActionConst.Pending;
+                _roleDetailRepo.Add(umsRoledtl);
+                _roleDetailRepo.Save();
+                _roleDetailRepo.Commit();
+
+                List<Menu> menuList = _roleService.GetUserInfo(roleDetailsInfo.UserId);
+                var menu = (menuList.Where(a => a.MenuLocation != null).ToList()).FirstOrDefault(o => o.MenuLocation.ToLower() == HelperActionConst.RoleFeatureControllerName);
+
+                string tableName = umsRoledtl.GetType().Name;
+                AuthQueDataModel authQueData = new AuthQueDataModel()
+                {
+                    ActionType = HelperActionConst.Update,
+                    TableName = tableName,
+                    PKId = umsRoledtl.Roledtlid.ToString(),
+                    FeatureId = menu.FeatureId,
+                    UserId = roleDetailsInfo.UserId,
+                    UrlLink = "Role/Details",
+                    NewRecord = JsonConvert.SerializeObject(umsRoledtl),
+                    OldRecord = null,
+                };
+                bool IsPerformAuthQueSetup = _roleService.SetAuthQueData(authQueData);
+
+                if (!IsPerformAuthQueSetup)
+                {
+                    _roleDetailRepo.Rollback();
+                }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                _roleDetailRepo.Rollback();
+                return false;
+            }
+        }
+        public long GetDbNextSequence()
+        {
+            long maxPK = _roleDetailRepo.AsQueryable().Max(x => x.Roledtlid);
+            return ++maxPK;
         }
     }
 

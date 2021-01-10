@@ -15,6 +15,7 @@ namespace UMSApi.Helpers
                             Authorized = "A",
                             AppId = "UMS",
                             RoleControllerName="role",
+                            RoleFeatureControllerName="rolefeature",
 
                             SessionActive="A",
                             SessionInactive="I",
