@@ -216,7 +216,7 @@ namespace Services
                 umsRoledtl.Appid = roleDetailsInfo.AppId.ToString();
                 umsRoledtl.Moduleid = roleDetailsInfo.ModuleId.ToString();
                 umsRoledtl.Featureid = roleDetailsInfo.FeatureId.ToString();
-                umsRoledtl.Createyn = roleDetailsInfo.CancelYN.ToString();
+                umsRoledtl.Createyn = roleDetailsInfo.CancelYN.ToString();  
                 umsRoledtl.Edityn = roleDetailsInfo.EditYN.ToString();
                 umsRoledtl.Viewdetailyn = roleDetailsInfo.ViewDetailYN.ToString();
                 umsRoledtl.Deleteyn = roleDetailsInfo.DeleteYN;
